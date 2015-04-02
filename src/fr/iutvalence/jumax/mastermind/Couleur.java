@@ -1,41 +1,42 @@
 package fr.iutvalence.jumax.mastermind;
 
 /**
- * Classe permettant de manipuler les couleurs des pions
+ * couleurs des pions
+ * @author jumax
  */
 public class Couleur 
 {
 	/**
 	 * La couleur verte
 	 */
-	private final static int VERT=0;
+	public final static int VERT=0;
 	/**
 	 * La couleur rouge
 	 */
-	private final static int ROUGE=1;
+	public final static int ROUGE=1;
 	/**
 	 * La couleur orange
 	 */
-	private final static int ORANGE=2;
+	public final static int ORANGE=2;
 	/**
 	 * La couleur violette
 	 */
-	private final static int VIOLET=3;
+	public final static int VIOLET=3;
 	/**
 	 * La couleur jaune
 	 */
-	private final static int JAUNE=4;
+	public final static int JAUNE=4;
 	/**
 	 * La couleur noire
 	 */
-	private final static int NOIR=5;
+	public final static int NOIR=5;
 	/**
 	 * La couleur grise
 	 */
-	private final static int GRIS=6;
+	public final static int GRIS=6;
 	/**
 	 * La couleur bleue
 	 */
-	private final static int BLEU=7;
+	public final static int BLEU=7;
 	
 }

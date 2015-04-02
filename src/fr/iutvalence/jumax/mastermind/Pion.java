@@ -1,6 +1,7 @@
 package fr.iutvalence.jumax.mastermind;
 /**
- * Classe représentant un pion coloré
+ * pion coloré
+ * @author jumax
  */
 public class Pion
 {
