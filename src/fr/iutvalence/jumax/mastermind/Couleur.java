@@ -4,39 +4,65 @@ package fr.iutvalence.jumax.mastermind;
  * couleurs des pions
  * @author jumax
  */
-public class Couleur 
+public enum Couleur 
 {
 	/**
 	 * La couleur verte
 	 */
-	public final static int VERT=0;
+	VERT("V"),
 	/**
 	 * La couleur rouge
 	 */
-	public final static int ROUGE=1;
+	ROUGE("R"),
 	/**
 	 * La couleur orange
 	 */
-	public final static int ORANGE=2;
+	ORANGE("O"),
 	/**
 	 * La couleur violette
 	 */
-	public final static int VIOLET=3;
+	VIOLET("Vi"),
 	/**
 	 * La couleur jaune
 	 */
-	public final static int JAUNE=4;
+	JAUNE("J"),
 	/**
 	 * La couleur noire
 	 */
-	public final static int NOIR=5;
+	NOIR("N"),
 	/**
 	 * La couleur grise
 	 */
-	public final static int GRIS=6;
+	GRIS("G"),
 	/**
 	 * La couleur bleue
 	 */
-	public final static int BLEU=7;
+	BLEU("B"),
+	/**
+	 * La couleur blanche
+	 */
+	BLANC("W");
+	
+	/**
+	 * Representation de la couleur
+	 */
+	private String representation;
+	
+	/**
+	 * Constructeur de Couleur
+	 * @param la représentation de la couleur choisie
+	*/
+	Couleur(String repr)
+	{
+		this.representation=repr;
+	}
+	
+	/**
+	 * Retourne une représentation texte de la couleur du pion
+	 */
+	public String toString()
+	{
+		return this.representation;
+	}
 	
 }

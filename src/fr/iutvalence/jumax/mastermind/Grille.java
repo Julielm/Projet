@@ -10,4 +10,5 @@ public class Grille
 	 */
 	public final static int NB_LIGNES=10;
 	public final static int NB_COLONNES=4;
+	
 }
