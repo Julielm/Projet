@@ -18,12 +18,15 @@ public class Grid {
     	grid = new Color[LINES_NB][COLUMNS_NB];
     }
     /** Get a line of the grid. */
-    public Color[] getLine(int linenb) {
+    public Color[] getLine(int linenb)
+    {
     	Color[] line= new Color[COLUMNS_NB];
     	for (int columnNb=0;columnNb<COLUMNS_NB;columnNb++)
     	{
     		line[columnNb]=this.grid[linenb][columnNb];
     	}
     	return line;
+
+        // TODO Why not simply: "return grid[linenb];"
     }
 }

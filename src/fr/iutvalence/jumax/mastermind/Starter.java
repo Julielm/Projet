@@ -1,22 +1,19 @@
 /**
- * 
+ *
  */
 package fr.iutvalence.jumax.mastermind;
 
 /**
- *  
- * @author vanbossm
+ * TODO JAVADOC.
  *
+ * @author vanbossm
+ * @version TODO
  */
 public class Starter {
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		//TODO implementation of parameters for a new Game.
-		Game game = new Game();
-		game.start();
-	}
-
+    /** TODO JAVADOC. */
+    public static void main(String[] args) {
+        //TODO implementation of parameters for a new Game.
+        Game game = new Game();
+        game.start();
+    }
 }

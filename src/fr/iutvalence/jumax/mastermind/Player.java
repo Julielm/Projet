@@ -1,6 +1,3 @@
-/**
- * 
- */
 package fr.iutvalence.jumax.mastermind;
 
 /**
@@ -16,7 +13,7 @@ public class Player {
 	public Player(String name){
 		this.name=name;
 	}
-	/** Name's getter*/
+	/** Name's getter. */
 	public String getName(){
 		return this.name;
 	}
