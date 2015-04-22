@@ -17,12 +17,14 @@ public class Game
 	/** Rounds' number of the game. */
 	private final int roundNb;
 
-	/** Game's constructor */
+	/** Game's constructor. */
 	public Game(Player player, Color[] secret)
 	{
 		this.player = player;
+		// TODO Warning! Array passed by reference in JAVA.
 		this.secret = secret;
 		this.grid = new Grid();
+		// TODO Why 10?
 		this.roundNb = 10;
 	}
 
