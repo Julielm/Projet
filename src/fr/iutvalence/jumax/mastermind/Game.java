@@ -6,7 +6,8 @@ package fr.iutvalence.jumax.mastermind;
  * @author jumax
  * @version 1.0.0
  */
-public class Game {
+public class Game
+{
 	/** Secret line of pawn's colors. */
 	private final Color[] secret;
 	/** Player of the game. */
@@ -15,16 +16,22 @@ public class Game {
 	private final Grid grid;
 	/** Rounds' number of the game. */
 	private final int roundNb;
+
 	/** Game's constructor */
-	public Game(Player player, Color[] secret){
-		this.player=player;
-		this.secret=secret;
-		this.grid=new Grid();
-		this.roundNb=10;			
+	public Game(Player player, Color[] secret)
+	{
+		this.player = player;
+		this.secret = secret;
+		this.grid = new Grid();
+		this.roundNb = 10;
 	}
-	/** Start a game.*/	
-	public void start() {
-				
+
+	
+	/** Start a game. */
+	public void start()
+	{
+		// Test of line's display of the grid in the game.
+		System.out.println(this.grid.displayLine(0));
 	}
 
 }
