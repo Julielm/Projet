@@ -8,6 +8,7 @@ package fr.iutvalence.jumax.mastermind;
  */
 public class Game
 {
+	/** Rounds number by default. */
 	public final static int DEFAULT_ROUND_NB=10;
 	/** Secret line of pawn's colors. */
 	private final Color[] secret;
