@@ -13,12 +13,8 @@ public class Starter
 	{
 		Player player = new Player("Player1");
 		Color[] secret = {Color.GREEN,  Color.BLACK, Color.PURPLE, Color.YELLOW};
-		// TODO You should do a method to reuse this comportment
-		// Display of secret's colors.
-		for (final Color color : secret) {
-			System.out.println(color);
-		}
 		Game game = new Game(player, secret);
+		game.displaySecret();
 		game.start();
 
 	}

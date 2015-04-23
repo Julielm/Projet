@@ -31,18 +31,5 @@ public class Grid {
         return this.grid[linenb];
     }
 
-    /**
-     * Representation of a line of the grid.
-     */
-    public String displayLine(int linenb) {
-        // TODO Why put this method here?
-        // TODO Replace with for each loop
-        // TODO Use StringBuilder rather than String
-        String representation = "";
-        Color[] lineToDisplay = this.getLine(linenb);
-        for (int columnNumber = 0; columnNumber < COLUMNS_NB; columnNumber++) {
-            representation += lineToDisplay[linenb].toString() + " ";
-        }
-        return representation;
-    }
+    
 }
