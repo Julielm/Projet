@@ -13,9 +13,8 @@ public class Starter
 	{
 		Player player = new Player("Player1");
 		Color[] secret = {Color.GREEN,  Color.BLACK, Color.PURPLE, Color.YELLOW};
-		Game game = new Game(player, secret);
+		Game game = new Game(player, secret);	
 		game.displaySecret();
 		game.start();
-
 	}
 }

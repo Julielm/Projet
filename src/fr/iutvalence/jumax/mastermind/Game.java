@@ -1,5 +1,7 @@
 package fr.iutvalence.jumax.mastermind;
 
+import java.util.Scanner;
+
 /**
  * Preparation of a new game.
  * 
@@ -37,7 +39,8 @@ public class Game
         StringBuilder representation= new StringBuilder();
         Color[] lineToDisplay = this.grid.getLine(linenb);
         for (int columnNumber = 0; columnNumber < Grid.COLUMNS_NB; columnNumber++) {
-            representation.append(lineToDisplay[linenb].toString() + " ");
+            representation.append(lineToDisplay[columnNumber].toString() + " ");
+            
         }
         return representation;
     }
@@ -51,11 +54,47 @@ public class Game
 		}
     }
     
+    /** Get the grid. */
+	public Grid getGrid()
+	{
+		return this.grid;
+	}
+	
+	
 	/** Start a game. */
 	public void start()
 	{
-		// Test of line's display of the grid in the game.
-		System.out.println(this.displayLine(0));
+		int lineNumber=0;
+		int columnSecretNumber=0;
+		while(lineNumber!= Grid.LINES_NB && columnSecretNumber != Grid.COLUMNS_NB)
+		{
+			int columnNumber=0;
+			while(columnNumber!=Grid.COLUMNS_NB)
+				//TODO exception for colors not in Color.java.
+					{
+						System.out.println("Input a color ->");
+						Scanner scanner = new Scanner(System.in);
+						String str=scanner.nextLine();
+						this.grid.getGrid()[lineNumber][columnNumber]=Color.valueOf(str);
+						columnNumber++;				
+					}
+			System.out.println(this.displayLine(lineNumber));
+			columnNumber=0;
+			int goodColorGoodPlace=0;
+			int goodColor=0;
+			while(columnNumber!=Grid.COLUMNS_NB)
+			{
+				if(this.grid.getGrid()[lineNumber][columnNumber]==this.secret[columnNumber])
+					goodColorGoodPlace++;
+				else
+				{
+					//TODO test if the color is good but has a bad place.
+				}
+			}
+			lineNumber++;
+		}
+
 	}
+	
 
 }

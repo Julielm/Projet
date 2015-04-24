@@ -14,7 +14,7 @@ public class Grid {
     /** Table of colors. */
     private final Color[][] grid;
 
-    /** Grid's constructor. */
+	/** Grid's constructor. */
     public Grid() {
         this.grid = new Color[LINES_NB][COLUMNS_NB];
         for (int lineNumber = 0; lineNumber < LINES_NB; lineNumber++) {
@@ -24,6 +24,12 @@ public class Grid {
         }
     }
 
+    /** Get the grid. */
+	public Color[][] getGrid()
+	{
+		return this.grid;
+	}
+	
     /**
      * Get a line of the grid.
      */
