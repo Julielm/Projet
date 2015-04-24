@@ -70,7 +70,7 @@ public class Game
 		{
 			int columnNumber=0;
 			while(columnNumber!=Grid.COLUMNS_NB)
-				//TODO exception for colors not in Color.java.
+				//TODO exception for colors not in Color.java and find a solution when we input a color not in capital.
 					{
 						System.out.println("Input a color ->");
 						Scanner scanner = new Scanner(System.in);
@@ -82,17 +82,29 @@ public class Game
 			columnNumber=0;
 			int goodColorGoodPlace=0;
 			int goodColor=0;
+			columnSecretNumber=0;
 			while(columnNumber!=Grid.COLUMNS_NB)
 			{
 				if(this.grid.getGrid()[lineNumber][columnNumber]==this.secret[columnNumber])
+				{
 					goodColorGoodPlace++;
+					columnNumber++;
+					columnSecretNumber++;
+				}
 				else
 				{
 					//TODO test if the color is good but has a bad place.
+					columnNumber++;
 				}
 			}
 			lineNumber++;
+			System.out.println("You have "+goodColorGoodPlace+" pawn(s) which have the good place.");
+			System.out.println("You have "+goodColor+" pawn(s) which have the good color but the bad place.");
 		}
+		if(columnSecretNumber== Grid.COLUMNS_NB)
+			System.out.println("Congratulations "+this.player.getName()+" you won !!");
+		else
+			System.out.println("Try again "+this.player.getName());
 
 	}
 	
