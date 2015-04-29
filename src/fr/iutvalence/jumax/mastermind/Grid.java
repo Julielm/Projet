@@ -23,12 +23,6 @@ public class Grid {
             }
         }
     }
-
-    /** Get the grid. */
-	public Color[][] getGrid()
-	{
-		return this.grid;
-	}
 	
     /**
      * Get a line of the grid.
@@ -36,6 +30,15 @@ public class Grid {
     public Color[] getLine(int linenb) {
         return this.grid[linenb];
     }
+
+	public void submitLine(Color[] guess, int lineNumber) {
+		int col=0;
+		for(final Color color : guess) {
+			this.grid[lineNumber][col]=color;
+			col++;
+		}
+			
+	}
 
     
 }

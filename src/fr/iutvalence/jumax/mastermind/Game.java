@@ -1,5 +1,6 @@
 package fr.iutvalence.jumax.mastermind;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -25,26 +26,11 @@ public class Game
 	public Game(Player player, Color[] secret)
 	{
 		this.player = player;
-		// TODO Warning! Array passed by reference in JAVA.
-		this.secret = secret;
+		this.secret = secret.clone();
 		this.grid = new Grid();
 		this.roundNb = DEFAULT_ROUND_NB;
 	}
-
-	/**
-     * Representation of a line of the grid.
-     */
-    public StringBuilder displayLine(int linenb) {
-        // TODO Replace with for each loop // I don't understand what we have to replace
-        StringBuilder representation= new StringBuilder();
-        Color[] lineToDisplay = this.grid.getLine(linenb);
-        for (int columnNumber = 0; columnNumber < Grid.COLUMNS_NB; columnNumber++) {
-            representation.append(lineToDisplay[columnNumber].toString() + " ");
-            
-        }
-        return representation;
-    }
-    
+   
     /**
      * Representation of the secret.
      */
@@ -54,59 +40,71 @@ public class Game
 		}
     }
     
-    /** Get the grid. */
-	public Grid getGrid()
-	{
-		return this.grid;
-	}
-	
-	
 	/** Start a game. */
 	public void start()
 	{
 		int lineNumber=0;
-		int columnSecretNumber=0;
-		while(lineNumber!= Grid.LINES_NB && columnSecretNumber != Grid.COLUMNS_NB)
+		int goodColorGoodPlace=0;
+		while(lineNumber!= this.roundNb && goodColorGoodPlace != Grid.COLUMNS_NB)
 		{
-			int columnNumber=0;
-			while(columnNumber!=Grid.COLUMNS_NB)
-				//TODO exception for colors not in Color.java and find a solution when we input a color not in capital.
-					{
-						System.out.println("Input a color ->");
-						Scanner scanner = new Scanner(System.in);
-						String str=scanner.nextLine();
-						this.grid.getGrid()[lineNumber][columnNumber]=Color.valueOf(str);
-						columnNumber++;				
-					}
-			System.out.println(this.displayLine(lineNumber));
-			columnNumber=0;
-			int goodColorGoodPlace=0;
-			int goodColor=0;
-			columnSecretNumber=0;
-			while(columnNumber!=Grid.COLUMNS_NB)
-			{
-				if(this.grid.getGrid()[lineNumber][columnNumber]==this.secret[columnNumber])
-				{
-					goodColorGoodPlace++;
-					columnNumber++;
-					columnSecretNumber++;
-				}
-				else
-				{
-					//TODO test if the color is good but has a bad place.
-					columnNumber++;
-				}
-			}
+			Color[] guess = askLine();
+			this.grid.submitLine(guess, lineNumber);
+			System.out.println(Arrays.toString(guess));
+			
+			Color[] cloneSecret=this.secret.clone();
+			goodColorGoodPlace=checkGoodColorGoodPlace(guess, cloneSecret);
+			int goodColor = checkGoodColor(guess, cloneSecret);
+			
 			lineNumber++;
 			System.out.println("You have "+goodColorGoodPlace+" pawn(s) which have the good place.");
 			System.out.println("You have "+goodColor+" pawn(s) which have the good color but the bad place.");
 		}
-		if(columnSecretNumber== Grid.COLUMNS_NB)
-			System.out.println("Congratulations "+this.player.getName()+" you won !!");
+		if(goodColorGoodPlace== Grid.COLUMNS_NB)
+			System.out.println("Congratulations "+this.player.getName()+" you won in "+lineNumber+" round(s) !!");
 		else
 			System.out.println("Try again "+this.player.getName());
-
 	}
 	
 
+	private int checkGoodColorGoodPlace(Color[] guess, Color[] cloneSecret) {
+		int goodColorGoodPlace=0;		
+		int columnNumber=0;
+		while(columnNumber!=Grid.COLUMNS_NB) {
+			if(guess[columnNumber]==cloneSecret[columnNumber]) {
+				goodColorGoodPlace++;
+				cloneSecret[columnNumber]=Color.WHITE;
+				guess[columnNumber]=null;
+			}
+			columnNumber++;
+		}
+		return goodColorGoodPlace;
+	}
+
+	private int checkGoodColor(Color[] guess, Color[] cloneSecret) {
+		int goodColor=0;
+		int columnNumber=0;
+		while(columnNumber !=Grid.COLUMNS_NB) {
+				int columnSecretNumber=0;
+				while(columnSecretNumber!=Grid.COLUMNS_NB && guess[columnNumber]!=cloneSecret[columnSecretNumber]) {
+					columnSecretNumber++;
+				}
+				if (columnSecretNumber!=Grid.COLUMNS_NB) {
+					goodColor++;
+					cloneSecret[columnSecretNumber]=Color.WHITE;
+				}
+				columnNumber++;		
+		}
+		return goodColor;
+	}
+	
+	private static Color[] askLine() {
+		Scanner scanner = new Scanner(System.in);
+		Color[] guess = new Color[Grid.COLUMNS_NB];
+		for (int col = 0; col < Grid.COLUMNS_NB; col++) {
+			System.out.println("Input a color ->");
+			String str = scanner.nextLine();
+			guess[col] = Color.valueOf(str);
+		}
+		return guess;
+	}
 }
