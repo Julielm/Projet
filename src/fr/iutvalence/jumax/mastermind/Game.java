@@ -105,7 +105,12 @@ public class Game
 		
 		Color[] guess = new Color[Grid.COLUMNS_NB];
 		for (int col = 0; col < Grid.COLUMNS_NB; col++) {
-			inputColor(col,guess);
+			try {
+				inputColor(col,guess);
+			} 
+			catch (WhiteColorException e) {
+				col-=1;
+			}
 		}
 		return guess;
 	}
@@ -113,16 +118,19 @@ public class Game
 	/**
 	 * Input a color.
 	 */
-	public static void inputColor(int col, Color[] guess) {
+	public static void inputColor(int col, Color[] guess) throws WhiteColorException {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Input a color ->");
 		String str = scanner.nextLine();
 		try {
 			guess[col] = Color.valueOf(str);
+			if (Color.valueOf(str)==Color.WHITE){
+				throw new WhiteColorException();
+			}		
 		}
-		catch (IllegalArgumentException e) {
-			System.out.println("Error in date entry ");
-			inputColor(col, guess);
-		}
+		catch (IllegalArgumentException f) {
+			System.out.println("Error in data entry ");	
+			inputColor(col,guess);
+		}	
 	}
 }
