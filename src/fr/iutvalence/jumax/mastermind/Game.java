@@ -11,8 +11,6 @@ import java.util.Scanner;
  */
 public class Game
 {
-	/** Rounds number by default. */
-	public final static int DEFAULT_ROUND_NB=10;
 	/** Secret line of pawn's colors. */
 	private final Color[] secret;
 	/** Player of the game. */
@@ -28,17 +26,8 @@ public class Game
 		this.player = player;
 		this.secret = secret.clone();
 		this.grid = new Grid();
-		this.roundNb = DEFAULT_ROUND_NB;
+		this.roundNb = Grid.LINES_NB;
 	}
-   
-    /**
-     * Representation of the secret.
-     */
-    public void displaySecret() {
-        for (final Color color : secret) {
-			System.out.println(color);
-		}
-    }
     
 	/** Start a game. */
 	public void start()
@@ -57,7 +46,7 @@ public class Game
 			
 			lineNumber++;
 			System.out.println("You have "+goodColorGoodPlace+" pawn(s) which have the good place.");
-			System.out.println("You have "+goodColor+" pawn(s) which have the good color but the bad place.");
+			System.out.println("You have "+goodColor+" pawn(s) which have the good color but the wrong place.");
 		}
 		if(goodColorGoodPlace== Grid.COLUMNS_NB)
 			System.out.println("Congratulations "+this.player.getName()+" you won in "+lineNumber+" round(s) !!");
@@ -65,7 +54,12 @@ public class Game
 			System.out.println("Try again "+this.player.getName());
 	}
 	
-
+	/**
+	 * Check which pawns have a good color and a good place.
+	 * @param guess
+	 * @param cloneSecret
+	 * @return
+	 */
 	private int checkGoodColorGoodPlace(Color[] guess, Color[] cloneSecret) {
 		int goodColorGoodPlace=0;		
 		int columnNumber=0;
@@ -80,6 +74,12 @@ public class Game
 		return goodColorGoodPlace;
 	}
 
+	/**
+	 * Check which pawns have a good color but a wrong place.
+	 * @param guess
+	 * @param cloneSecret
+	 * @return
+	 */
 	private int checkGoodColor(Color[] guess, Color[] cloneSecret) {
 		int goodColor=0;
 		int columnNumber=0;
@@ -97,6 +97,10 @@ public class Game
 		return goodColor;
 	}
 	
+	/**
+	 * Ask a line to the player.
+	 * @return
+	 */
 	private static Color[] askLine() {
 		Scanner scanner = new Scanner(System.in);
 		Color[] guess = new Color[Grid.COLUMNS_NB];

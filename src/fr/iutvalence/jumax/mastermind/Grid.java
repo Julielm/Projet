@@ -31,6 +31,11 @@ public class Grid {
         return this.grid[linenb];
     }
 
+    /**
+     * Put in the grid the ask line.
+     * @param guess
+     * @param lineNumber
+     */
 	public void submitLine(Color[] guess, int lineNumber) {
 		int col=0;
 		for(final Color color : guess) {

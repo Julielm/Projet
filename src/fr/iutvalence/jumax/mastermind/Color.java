@@ -1,5 +1,7 @@
 package fr.iutvalence.jumax.mastermind;
 
+import java.util.Random;
+
 /**
  * Pawn's color.
  *
@@ -44,5 +46,14 @@ public enum Color
 	public String toString()
 	{
 		return this.representation;
+	}
+	
+	/**
+	 * Get a random color.
+	 * @return
+	 */
+	public static Color getRandomColor(){
+		Random random = new Random();
+		return values()[random.nextInt(values().length)];
 	}
 }

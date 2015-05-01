@@ -1,5 +1,7 @@
 package fr.iutvalence.jumax.mastermind;
 
+import java.util.Arrays;
+
 /**
  * Application of the game.
  *
@@ -12,9 +14,10 @@ public class Starter
 	public static void main(String[] args)
 	{
 		Player player = new Player("Player1");
-		Color[] secret = {Color.GREEN,  Color.BLACK, Color.PURPLE, Color.YELLOW};
+		Color[] secret = new GeneratorOfManualSecrets().getSecret(Grid.COLUMNS_NB);
 		Game game = new Game(player, secret);	
-		game.displaySecret();
+		System.out.println(Arrays.toString(secret));
 		game.start();
+
 	}
 }
