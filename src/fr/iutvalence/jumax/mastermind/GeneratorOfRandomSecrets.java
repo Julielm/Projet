@@ -13,7 +13,13 @@ public class GeneratorOfRandomSecrets extends GeneratorOfSecrets
 	{
 		Color[] secret = new Color[size];
 		for (int position=0; position < size; position++) {
-			secret[position]=Color.getRandomColor();
+			try
+			{
+				secret[position]=Color.getRandomColor();
+			} catch (WhiteColorException e)
+			{
+				position-=1;
+			}
 		}
 		return secret;
 	}

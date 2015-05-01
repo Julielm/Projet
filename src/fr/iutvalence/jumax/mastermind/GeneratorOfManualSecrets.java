@@ -11,14 +11,17 @@ import java.util.Scanner;
 public class GeneratorOfManualSecrets extends GeneratorOfSecrets 
 {
 	@Override
-	public Color[] getSecret(int size)
-	{
+	public Color[] getSecret(int size) {
 		Scanner scanner = new Scanner(System.in);
 		Color[] secret = new Color[size];
 		for (int col = 0; col < size; col++) {
-			System.out.println("Input a color for the secret ->");
-			String str = scanner.nextLine();
-			secret[col] = Color.valueOf(str);
+			try {
+				Game.inputColor(col, secret);
+			}
+			catch (WhiteColorException e) {
+				System.out.println("You can't input the white color");
+				col-=1;
+			}
 		}
 		return secret;
 	}

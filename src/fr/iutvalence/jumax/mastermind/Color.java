@@ -52,8 +52,12 @@ public enum Color
 	 * Get a random color.
 	 * @return
 	 */
-	public static Color getRandomColor(){
+	public static Color getRandomColor() throws WhiteColorException {
 		Random random = new Random();
-		return values()[random.nextInt(values().length)];
+		Color color = values()[random.nextInt(values().length)];
+		if (color==Color.WHITE) {
+			throw new WhiteColorException();
+		}
+		return color;
 	}
 }

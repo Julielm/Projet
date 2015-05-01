@@ -109,6 +109,7 @@ public class Game
 				inputColor(col,guess);
 			} 
 			catch (WhiteColorException e) {
+				System.out.println("You can't input the white color");
 				col-=1;
 			}
 		}

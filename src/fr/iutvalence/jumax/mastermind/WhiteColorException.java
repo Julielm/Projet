@@ -8,7 +8,4 @@ package fr.iutvalence.jumax.mastermind;
  */
 public class WhiteColorException extends Exception
 {
-	public WhiteColorException() {
-		System.out.println("You can't input the white color");
-	}
 }

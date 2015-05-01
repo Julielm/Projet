@@ -13,5 +13,5 @@ public abstract class GeneratorOfSecrets
 	 * @param size
 	 * @return
 	 */
-	public abstract  Color[] getSecret(int size);
+	public abstract  Color[] getSecret(int size) throws WhiteColorException;
 }
