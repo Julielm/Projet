@@ -102,13 +102,27 @@ public class Game
 	 * @return
 	 */
 	private static Color[] askLine() {
-		Scanner scanner = new Scanner(System.in);
+		
 		Color[] guess = new Color[Grid.COLUMNS_NB];
 		for (int col = 0; col < Grid.COLUMNS_NB; col++) {
-			System.out.println("Input a color ->");
-			String str = scanner.nextLine();
-			guess[col] = Color.valueOf(str);
+			inputColor(col,guess);
 		}
 		return guess;
+	}
+	
+	/**
+	 * Input a color.
+	 */
+	public static void inputColor(int col, Color[] guess) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Input a color ->");
+		String str = scanner.nextLine();
+		try {
+			guess[col] = Color.valueOf(str);
+		}
+		catch (IllegalArgumentException e) {
+			System.out.println("Error in date entry ");
+			inputColor(col, guess);
+		}
 	}
 }
