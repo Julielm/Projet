@@ -14,6 +14,7 @@ public class GeneratorOfManualSecrets extends GeneratorOfSecrets
 	public Color[] getSecret(int size) {
 		Scanner scanner = new Scanner(System.in);
 		Color[] secret = new Color[size];
+		System.out.println("Input the secret :");
 		for (int col = 0; col < size; col++) {
 			try {
 				Game.inputColor(col, secret);

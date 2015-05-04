@@ -55,9 +55,20 @@ public enum Color
 	public static Color getRandomColor() throws WhiteColorException {
 		Random random = new Random();
 		Color color = values()[random.nextInt(values().length)];
-		if (color==Color.WHITE) {
+		if (color==WHITE) {
 			throw new WhiteColorException();
 		}
 		return color;
+	}
+	
+	public static StringBuilder displayColorsToInput() {
+		StringBuilder str= new StringBuilder();
+		for(Color color : values()) {
+			if (color!=WHITE){
+				str.append(" ");
+				str.append(color.name());
+			}
+		}
+		return str;
 	}
 }

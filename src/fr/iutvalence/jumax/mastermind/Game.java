@@ -121,7 +121,8 @@ public class Game
 	 */
 	public static void inputColor(int col, Color[] guess) throws WhiteColorException {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Input a color ->");
+		System.out.println("Input a color in capital->");
+		System.out.println("Possible Colors:"+Color.displayColorsToInput());
 		String str = scanner.nextLine();
 		try {
 			guess[col] = Color.valueOf(str);

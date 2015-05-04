@@ -14,10 +14,10 @@ public class Starter
 	public static void main(String[] args)
 	{
 		Player player = new Player("Player1");
-		Color[] secret = new GeneratorOfRandomSecrets().getSecret(Grid.COLUMNS_NB);
+		Color[] secret = new GeneratorOfManualSecrets().getSecret(Grid.COLUMNS_NB);
 		Game game = new Game(player, secret);	
-		System.out.println(Arrays.toString(secret));
 		game.start();
+		System.out.println(Arrays.toString(secret));
 
 	}
 }
