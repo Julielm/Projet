@@ -15,15 +15,36 @@ public class Starter
 	 * @param args (n/a) */
 	public static void main(String[] args)
 	{
+		ManagerOfScores scores = new ManagerOfScores();
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Input your name->");
-		String str = scanner.nextLine();
+		int index=0;
+		System.out.println("Welcome");
 		
-		Player player = new Player(str);
-		Color[] secret = new GeneratorOfSecretsWithDictionary().getSecret(Grid.COLUMNS_NB);
-		Game game = new Game(player, secret);	
-		game.start();
-		System.out.println(Arrays.toString(secret));
+		while (index!=3) {
+			System.out.println("");
+			System.out.println("What do you want to do ? ");
+			System.out.println("1: Play");
+			System.out.println("2: Watch scores");
+			System.out.println("3: Quit"); 
+			index = scanner.nextInt();
+			String dummy = scanner.nextLine();
+			
+			if (index==1) {
+				System.out.println("Input your name->");
+				String str = scanner.nextLine();
+				Player player = new Player(str);
+				
+				Color[] secret = new GeneratorOfSecretsWithDictionary().getSecret(Grid.COLUMNS_NB);
+				Game game = new Game(player, secret);	
+				scores.writeScore(game.start(), player.getName());
+				System.out.println(Arrays.toString(secret));
+			}
+			if (index==2) {
+				System.out.println("------ Scores ------");
+				scores.displayScores();
+			}
+		}
+		
 
 	}
 }

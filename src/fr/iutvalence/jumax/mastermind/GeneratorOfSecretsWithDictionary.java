@@ -41,10 +41,10 @@ public class GeneratorOfSecretsWithDictionary extends GeneratorOfSecrets
 					
 					for (int index = 0; index < secretNumber; index++)
 					{
-						Color[] currentSecret = new Color[Grid.COLUMNS_NB];
+						Color[] currentSecret = new Color[size];
 						StringTokenizer colorString = new StringTokenizer (secretString.nextToken(), ",") ;
 						
-						for (int position = 0; position < Grid.COLUMNS_NB; position++)
+						for (int position = 0; position < size; position++)
 						{
 							currentSecret[position]=Color.valueOf(colorString.nextToken());
 						}

@@ -11,6 +11,7 @@ import java.util.Scanner;
  */
 public class Game
 {
+	public static final int LOST_GAME =0;
 	/** Secret line of pawn's colors. */
 	private final Color[] secret;
 	/** Player of the game. */
@@ -32,7 +33,7 @@ public class Game
 	}
     
 	/** Start a game. */
-	public void start()
+	public int start()
 	{
 		int lineNumber=0;
 		int goodColorGoodPlace=0;
@@ -50,10 +51,12 @@ public class Game
 			System.out.println("You have "+goodColorGoodPlace+" pawn(s) which have the good place.");
 			System.out.println("You have "+goodColor+" pawn(s) which have the good color but the wrong place.");
 		}
-		if(goodColorGoodPlace== Grid.COLUMNS_NB)
+		if(goodColorGoodPlace== Grid.COLUMNS_NB) {
 			System.out.println("Congratulations "+this.player.getName()+" you won in "+lineNumber+" round(s) !!");
-		else
-			System.out.println("Try again "+this.player.getName());
+			return lineNumber;
+		}
+		System.out.println("Try again "+this.player.getName());
+		return LOST_GAME;
 	}
 	
 	/**
