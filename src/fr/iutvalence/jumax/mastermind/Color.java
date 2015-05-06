@@ -50,7 +50,8 @@ public enum Color
 	
 	/**
 	 * Get a random color.
-	 * @return
+	 * @return a random color
+	 * @throws WhiteColorException 
 	 */
 	public static Color getRandomColor() throws WhiteColorException {
 		Random random = new Random();
@@ -61,6 +62,10 @@ public enum Color
 		return color;
 	}
 	
+	/**
+	 * Display all the possible colors to input.
+	 * @return the colors
+	 */
 	public static StringBuilder displayColorsToInput() {
 		StringBuilder str= new StringBuilder();
 		for(Color color : values()) {

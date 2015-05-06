@@ -20,7 +20,9 @@ public class Game
 	/** Rounds' number of the game. */
 	private final int roundNb;
 
-	/** Game's constructor. */
+	/** Game's constructor. 
+	 * @param player 
+	 * @param secret */
 	public Game(Player player, Color[] secret)
 	{
 		this.player = player;
@@ -118,6 +120,9 @@ public class Game
 	
 	/**
 	 * Input a color.
+	 * @param col 
+	 * @param guess 
+	 * @throws WhiteColorException 
 	 */
 	public static void inputColor(int col, Color[] guess) throws WhiteColorException {
 		Scanner scanner = new Scanner(System.in);
