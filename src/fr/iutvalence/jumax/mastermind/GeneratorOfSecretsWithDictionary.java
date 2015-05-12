@@ -14,54 +14,48 @@ import java.util.StringTokenizer;
  * @author jumax
  * @version 1.0.0
  */
-public class GeneratorOfSecretsWithDictionary extends GeneratorOfSecrets 
-{
+public class GeneratorOfSecretsWithDictionary extends GeneratorOfSecrets {
 	@Override
 	public Color[] getSecret(int size) {
-		
+
 		StringBuilder secretFileName = new StringBuilder();
 		secretFileName.append("secret.txt");
-		
+
 		ArrayList<Color[]> secretsCollection = new ArrayList<Color[]>();
-		
-		try
-		{
-			BufferedReader entry = new BufferedReader(new FileReader(secretFileName.toString())) ;
-			try
-			{
-				String readText = entry.readLine() ;
-				
-				
-				if (readText != null)
-				{
-					StringTokenizer secretString = new StringTokenizer (readText, "/") ;
-					
+
+		try {
+			BufferedReader entry = new BufferedReader(new FileReader(
+					secretFileName.toString()));
+			try {
+				String readText = entry.readLine();
+
+				if (readText != null) {
+					StringTokenizer secretString = new StringTokenizer(
+							readText, "/");
+
 					int secretNumber = secretString.countTokens();
-					
-					
-					for (int index = 0; index < secretNumber; index++)
-					{
+
+					for (int index = 0; index < secretNumber; index++) {
 						Color[] currentSecret = new Color[size];
-						StringTokenizer colorString = new StringTokenizer (secretString.nextToken(), ",") ;
-						
-						for (int position = 0; position < size; position++)
-						{
-							currentSecret[position]=Color.valueOf(colorString.nextToken());
+						StringTokenizer colorString = new StringTokenizer(
+								secretString.nextToken(), ",");
+
+						for (int position = 0; position < size; position++) {
+							currentSecret[position] = Color.valueOf(colorString
+									.nextToken());
 						}
-						secretsCollection.add(currentSecret);						
+						secretsCollection.add(currentSecret);
 					}
-				}		
-			} catch (IOException e)
-			{
+				}
+			} catch (IOException e) {
 				e.printStackTrace();
-			}		
-		} catch (FileNotFoundException e)
-		{
+			}
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		Collections.shuffle(secretsCollection);
 		return secretsCollection.get(0);
 	}
-	
+
 }

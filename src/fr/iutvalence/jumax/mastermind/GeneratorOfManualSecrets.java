@@ -8,8 +8,7 @@ import java.util.Scanner;
  * @author jumax
  * @version 1.0.0
  */
-public class GeneratorOfManualSecrets extends GeneratorOfSecrets 
-{
+public class GeneratorOfManualSecrets extends GeneratorOfSecrets {
 	@Override
 	public Color[] getSecret(int size) {
 		Scanner scanner = new Scanner(System.in);
@@ -18,10 +17,9 @@ public class GeneratorOfManualSecrets extends GeneratorOfSecrets
 		for (int col = 0; col < size; col++) {
 			try {
 				Game.inputColor(col, secret);
-			}
-			catch (WhiteColorException e) {
+			} catch (WhiteColorException e) {
 				System.out.println("You can't input the white color");
-				col-=1;
+				col -= 1;
 			}
 		}
 		return secret;

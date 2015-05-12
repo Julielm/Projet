@@ -8,8 +8,7 @@ import java.util.Random;
  * @author jumax
  * @version 1.0.0
  */
-public enum Color
-{
+public enum Color {
 	/** Green color. */
 	GREEN("Gre"),
 	/** Red color. */
@@ -37,39 +36,39 @@ public enum Color
 	 * @param repr
 	 *            The representation of the chosen color.
 	 */
-	Color(String repr)
-	{
+	Color(String repr) {
 		this.representation = repr;
 	}
 
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return this.representation;
 	}
-	
+
 	/**
 	 * Get a random color.
+	 * 
 	 * @return a random color
-	 * @throws WhiteColorException 
+	 * @throws WhiteColorException
 	 */
 	public static Color getRandomColor() throws WhiteColorException {
 		Random random = new Random();
 		Color color = values()[random.nextInt(values().length)];
-		if (color==WHITE) {
+		if (color == WHITE) {
 			throw new WhiteColorException();
 		}
 		return color;
 	}
-	
+
 	/**
 	 * Display all the possible colors to input.
+	 * 
 	 * @return the colors
 	 */
 	public static StringBuilder displayColorsToInput() {
-		StringBuilder str= new StringBuilder();
-		for(Color color : values()) {
-			if (color!=WHITE){
+		StringBuilder str = new StringBuilder();
+		for (Color color : values()) {
+			if (color != WHITE) {
 				str.append(" ");
 				str.append(color.name());
 			}

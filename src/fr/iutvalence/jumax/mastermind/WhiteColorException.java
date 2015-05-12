@@ -6,8 +6,7 @@ package fr.iutvalence.jumax.mastermind;
  * @author jumax
  * @version 1.0.0
  */
-public class WhiteColorException extends Exception
-{
+public class WhiteColorException extends Exception {
 	private static final long serialVersionUID = 1L;
-	
+
 }
