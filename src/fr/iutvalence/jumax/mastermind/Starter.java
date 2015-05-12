@@ -1,5 +1,6 @@
 package fr.iutvalence.jumax.mastermind;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -52,12 +53,23 @@ public class Starter {
 					secret = new GeneratorOfSecretsWithDictionary().getSecret(Grid.COLUMNS_NB);
 				}	
 				Game game = new Game(player, secret);
-				scores.writeScore(game.start(), player.getName());
+				try {
+					scores.writeScore(game.start(), player.getName());
+				}
+				catch (IOException e) {
+					// TODO
+					System.err.println("Erreur lors de l'enregistrement du score");
+				}
 				System.out.println(Arrays.toString(secret));
 			}
 			if (index == 2) {
 				System.out.println("------ Scores ------");
-				scores.displayScores();
+				try {
+					scores.displayScores();
+				} catch (IOException e) {
+					// TODO 
+					e.printStackTrace();
+				}
 			}
 		}
 

@@ -22,38 +22,28 @@ public class ManagerOfScores {
 	 * @param score
 	 * @param player
 	 */
-	public void writeScore(int score, String player) {
+	public void writeScore(int score, String player) throws IOException {
 		File file = new File("scores.txt");
-		FileWriter fw;
-
-		try {
-			fw = new FileWriter(file, true);
+		try (FileWriter fw = new FileWriter(file, true)) {
 			if (score != 0) {
-				String str = player + "," + score + "/";
-				fw.write(str);
-				fw.close();
+				fw.write(String.format("%s,%d/", player, score));
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 
 	/**
 	 * Display scores in the console.
 	 */
-	public void displayScores() {
+	public void displayScores() throws IOException {
+		StringBuilder secretFileName = new StringBuilder("scores.txt");
 
-		StringBuilder secretFileName = new StringBuilder();
-		secretFileName.append("scores.txt");
-		try {
-			BufferedReader entry = new BufferedReader(new FileReader(
-					secretFileName.toString()));
-			try {
+		File file = new File("scores.txt");
+		try (BufferedReader entry = new BufferedReader(new FileReader(file))) {
 				String readText = entry.readLine();
 
 				if (readText != null) {
-					StringTokenizer scoreString = new StringTokenizer(readText,
-							"/");
+					// TODO readText.split()
+					StringTokenizer scoreString = new StringTokenizer(readText, "/");
 
 					int scoresNumber = scoreString.countTokens();
 
@@ -68,11 +58,6 @@ public class ManagerOfScores {
 						System.out.println(str);
 					}
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		}
-	}
 }
