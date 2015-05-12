@@ -35,9 +35,22 @@ public class Starter {
 				System.out.println("Input your name->");
 				String str = scanner.nextLine();
 				Player player = new Player(str);
+				
+				System.out.println("");
+				System.out.println("What do you want to do ? ");
+				System.out.println("1: Random Secret");
+				System.out.println("2: Input a secret");
+				System.out.println("3: Secret with the dictionary");
+				index = scanner.nextInt();
+				dummy = scanner.nextLine();
+				Color[] secret = new GeneratorOfRandomSecrets().getSecret(Grid.COLUMNS_NB);
 
-				Color[] secret = new GeneratorOfSecretsWithDictionary()
-						.getSecret(Grid.COLUMNS_NB);
+				if(index==2){
+					secret = new GeneratorOfManualSecrets().getSecret(Grid.COLUMNS_NB);
+					}
+				if(index==3){
+					secret = new GeneratorOfSecretsWithDictionary().getSecret(Grid.COLUMNS_NB);
+				}	
 				Game game = new Game(player, secret);
 				scores.writeScore(game.start(), player.getName());
 				System.out.println(Arrays.toString(secret));

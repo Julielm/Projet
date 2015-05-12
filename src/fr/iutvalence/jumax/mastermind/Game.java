@@ -39,6 +39,7 @@ public class Game {
 		int goodColorGoodPlace = 0;
 		while (lineNumber != this.roundNb
 				&& goodColorGoodPlace != Grid.COLUMNS_NB) {
+			System.out.println("Round " + (lineNumber+1) +":");
 			Color[] guess = askLine();
 			this.grid.submitLine(guess, lineNumber);
 			System.out.println(Arrays.toString(guess));
