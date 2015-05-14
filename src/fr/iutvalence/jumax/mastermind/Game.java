@@ -1,5 +1,6 @@
 package fr.iutvalence.jumax.mastermind;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -31,6 +32,7 @@ public class Game {
 		this.secret = secret.clone();
 		this.grid = new Grid();
 		this.roundNb = Grid.LINES_NB;
+		
 	}
 
 	/** Start a game. */
@@ -123,7 +125,7 @@ public class Game {
 			try {
 				inputColor(col, guess);
 			} catch (WhiteColorException e) {
-				System.out.println("You can't input the white color");
+				System.err.println("You can't input the white color");
 				col -= 1;
 			}
 		}
@@ -149,7 +151,7 @@ public class Game {
 				throw new WhiteColorException();
 			}
 		} catch (IllegalArgumentException f) {
-			System.out.println("Error in data entry ");
+			System.err.println("Error in data entry ");
 			inputColor(col, guess);
 		}
 	}

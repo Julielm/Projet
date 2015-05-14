@@ -14,8 +14,14 @@ import java.util.StringTokenizer;
  * @author jumax
  * @version 1.0.0
  */
-public class ManagerOfScores {
+public class HistoricOfScores {
 
+	private final File scoresFile;
+	
+	public HistoricOfScores(File nameOfFile)
+	{
+		this.scoresFile=nameOfFile;
+	}
 	/**
 	 * Add a score in the scores' file.
 	 * 
@@ -23,8 +29,7 @@ public class ManagerOfScores {
 	 * @param player
 	 */
 	public void writeScore(int score, String player) throws IOException {
-		File file = new File("scores.txt");
-		try (FileWriter fw = new FileWriter(file, true)) {
+		try (FileWriter fw = new FileWriter(this.scoresFile, true)) {
 			if (score != 0) {
 				fw.write(String.format("%s,%d/", player, score));
 			}
@@ -35,27 +40,19 @@ public class ManagerOfScores {
 	 * Display scores in the console.
 	 */
 	public void displayScores() throws IOException {
-		StringBuilder secretFileName = new StringBuilder("scores.txt");
-
-		File file = new File("scores.txt");
-		try (BufferedReader entry = new BufferedReader(new FileReader(file))) {
+		try (BufferedReader entry = new BufferedReader(new FileReader(this.scoresFile))) {
 				String readText = entry.readLine();
-
+				
 				if (readText != null) {
-					// TODO readText.split()
-					StringTokenizer scoreString = new StringTokenizer(readText, "/");
-
-					int scoresNumber = scoreString.countTokens();
-
-					for (int index = 0; index < scoresNumber; index++) {
+					String[] scoreString = readText.split("/");
+					for (int index = 0; index < scoreString.length; index++) {
+						String[] string = scoreString[index].split(",");
 						StringBuilder str = new StringBuilder();
-						StringTokenizer string = new StringTokenizer(
-								scoreString.nextToken(), ",");
-						str.append(string.nextToken());
+						str.append(string[0]);
 						str.append(" : ");
-						str.append(string.nextToken());
+						str.append(string[1]);
 						str.append(" rounds.");
-						System.out.println(str);
+						System.out.println(str);						
 					}
 				}
 			}

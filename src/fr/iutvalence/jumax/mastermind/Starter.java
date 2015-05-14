@@ -1,5 +1,6 @@
 package fr.iutvalence.jumax.mastermind;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -18,7 +19,9 @@ public class Starter {
 	 *            (n/a)
 	 */
 	public static void main(String[] args) {
-		ManagerOfScores scores = new ManagerOfScores();
+		File scores = new File("scores.txt");
+		File secrets= new File("secret.txt");
+		HistoricOfScores historicOfScores = new HistoricOfScores(scores);
 		Scanner scanner = new Scanner(System.in);
 		int index = 0;
 		System.out.println("Welcome");
@@ -50,28 +53,30 @@ public class Starter {
 					secret = new GeneratorOfManualSecrets().getSecret(Grid.COLUMNS_NB);
 					}
 				if(index==3){
-					secret = new GeneratorOfSecretsWithDictionary().getSecret(Grid.COLUMNS_NB);
+					try {
+						secret = new GeneratorOfSecretsWithDictionary(secrets).getSecret(Grid.COLUMNS_NB);
+					} catch (IOException e) {
+						System.err.println("Error reading the dictionary");
+					}
 				}	
 				Game game = new Game(player, secret);
 				try {
-					scores.writeScore(game.start(), player.getName());
+					historicOfScores.writeScore(game.start(), player.getName());
 				}
 				catch (IOException e) {
-					// TODO
-					System.err.println("Erreur lors de l'enregistrement du score");
+					System.err.println("Error saving the score");
 				}
 				System.out.println(Arrays.toString(secret));
 			}
 			if (index == 2) {
 				System.out.println("------ Scores ------");
 				try {
-					scores.displayScores();
+					historicOfScores.displayScores();
 				} catch (IOException e) {
-					// TODO 
-					e.printStackTrace();
+					System.err.println("Error displaying score");
 				}
 			}
 		}
-
 	}
+		
 }

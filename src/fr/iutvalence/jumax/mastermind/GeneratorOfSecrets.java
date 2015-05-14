@@ -1,5 +1,7 @@
 package fr.iutvalence.jumax.mastermind;
 
+import java.io.IOException;
+
 /**
  * Generator of secrets.
  * 
@@ -13,6 +15,7 @@ public abstract class GeneratorOfSecrets {
 	 * @param size
 	 * @return a secret
 	 * @throws WhiteColorException
+	 * @throws IOException 
 	 */
-	public abstract Color[] getSecret(int size) throws WhiteColorException;
+	public abstract Color[] getSecret(int size) throws WhiteColorException, IOException;
 }

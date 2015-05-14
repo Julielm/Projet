@@ -1,6 +1,7 @@
 package fr.iutvalence.jumax.mastermind;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,47 +16,34 @@ import java.util.StringTokenizer;
  * @version 1.0.0
  */
 public class GeneratorOfSecretsWithDictionary extends GeneratorOfSecrets {
+	
+	private final File dictionary;
+	
+	public GeneratorOfSecretsWithDictionary(File dictionary) {
+		super();
+		this.dictionary=dictionary;
+	}
+	
 	@Override
-	public Color[] getSecret(int size) {
-
-		StringBuilder secretFileName = new StringBuilder();
-		secretFileName.append("secret.txt");
-
-		ArrayList<Color[]> secretsCollection = new ArrayList<Color[]>();
-
-		try {
-			BufferedReader entry = new BufferedReader(new FileReader(
-					secretFileName.toString()));
-			try {
-				String readText = entry.readLine();
-
-				if (readText != null) {
-					StringTokenizer secretString = new StringTokenizer(
-							readText, "/");
-
-					int secretNumber = secretString.countTokens();
-
-					for (int index = 0; index < secretNumber; index++) {
-						Color[] currentSecret = new Color[size];
-						StringTokenizer colorString = new StringTokenizer(
-								secretString.nextToken(), ",");
-
-						for (int position = 0; position < size; position++) {
-							currentSecret[position] = Color.valueOf(colorString
-									.nextToken());
-						}
-						secretsCollection.add(currentSecret);
+	public Color[] getSecret(int size) throws IOException {
+		try (BufferedReader entry = new BufferedReader(new FileReader(this.dictionary))) {
+			String readText = entry.readLine();
+	
+			ArrayList<Color[]> secretsCollection = new ArrayList<Color[]>();
+			if (readText!=null) {
+				String[] secretString = readText.split("/");
+				for (int index=0; index < secretString.length; index++) {
+					Color[] currentSecret = new Color[size];
+					String[] color = secretString[index].split(",");
+					for (int position=0; position < size; position++) {
+						currentSecret[position] = Color.valueOf(color[position]);
 					}
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+					secretsCollection.add(currentSecret);
+				}		
+			}	
+			Collections.shuffle(secretsCollection);
+			return secretsCollection.get(0);
 		}
-
-		Collections.shuffle(secretsCollection);
-		return secretsCollection.get(0);
 	}
 
 }
