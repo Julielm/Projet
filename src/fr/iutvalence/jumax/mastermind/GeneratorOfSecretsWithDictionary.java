@@ -17,8 +17,15 @@ import java.util.StringTokenizer;
  */
 public class GeneratorOfSecretsWithDictionary extends GeneratorOfSecrets {
 	
+	/**
+	 * File where the dictionary is.
+	 */
 	private final File dictionary;
 	
+	/**
+	 * Constructor of a generator of secrets thanks to the dictionary put in parameter.
+	 * @param dictionary
+	 */
 	public GeneratorOfSecretsWithDictionary(File dictionary) {
 		super();
 		this.dictionary=dictionary;

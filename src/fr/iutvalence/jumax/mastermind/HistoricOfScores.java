@@ -15,9 +15,15 @@ import java.util.StringTokenizer;
  * @version 1.0.0
  */
 public class HistoricOfScores {
-
+	/**
+	 * File of the scores where historic is saved.
+	 */
 	private final File scoresFile;
 	
+	/**
+	 * Constructor of the historic.
+	 * @param nameOfFile
+	 */
 	public HistoricOfScores(File nameOfFile)
 	{
 		this.scoresFile=nameOfFile;

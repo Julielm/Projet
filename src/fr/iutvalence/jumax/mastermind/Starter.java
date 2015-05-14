@@ -34,7 +34,8 @@ public class Starter {
 			System.out.println("3: Quit");
 			index = scanner.nextInt();
 			String dummy = scanner.nextLine();
-
+			
+			int indexTwo = 0;
 			if (index == 1) {
 				System.out.println("Input your name->");
 				String str = scanner.nextLine();
@@ -45,14 +46,14 @@ public class Starter {
 				System.out.println("1: Random Secret");
 				System.out.println("2: Input a secret");
 				System.out.println("3: Secret with the dictionary");
-				index = scanner.nextInt();
+				indexTwo = scanner.nextInt();
 				dummy = scanner.nextLine();
 				Color[] secret = new GeneratorOfRandomSecrets().getSecret(Grid.COLUMNS_NB);
 
-				if(index==2){
+				if(indexTwo ==2){
 					secret = new GeneratorOfManualSecrets().getSecret(Grid.COLUMNS_NB);
 					}
-				if(index==3){
+				if(indexTwo ==3){
 					try {
 						secret = new GeneratorOfSecretsWithDictionary(secrets).getSecret(Grid.COLUMNS_NB);
 					} catch (IOException e) {
