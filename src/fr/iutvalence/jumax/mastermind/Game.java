@@ -1,6 +1,5 @@
 package fr.iutvalence.jumax.mastermind;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Scanner;
 
