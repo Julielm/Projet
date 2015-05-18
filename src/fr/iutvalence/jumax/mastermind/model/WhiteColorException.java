@@ -1,4 +1,4 @@
-package fr.iutvalence.jumax.mastermind;
+package fr.iutvalence.jumax.mastermind.model;
 
 /**
  * Exception when the input color is white.

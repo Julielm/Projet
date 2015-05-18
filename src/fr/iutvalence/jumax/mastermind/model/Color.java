@@ -1,4 +1,4 @@
-package fr.iutvalence.jumax.mastermind;
+package fr.iutvalence.jumax.mastermind.model;
 
 import java.util.Random;
 

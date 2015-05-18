@@ -1,4 +1,5 @@
-package fr.iutvalence.jumax.mastermind;
+package fr.iutvalence.jumax.mastermind.model;
+
 
 /**
  * Generator of random secrets.
@@ -6,7 +7,7 @@ package fr.iutvalence.jumax.mastermind;
  * @author jumax
  * @version 1.0.0
  */
-public class GeneratorOfRandomSecrets extends GeneratorOfSecrets {
+public class GeneratorOfRandomSecrets implements GeneratorOfSecrets {
 	@Override
 	public Color[] getSecret(int size) {
 		Color[] secret = new Color[size];

@@ -1,4 +1,4 @@
-package fr.iutvalence.jumax.mastermind;
+package fr.iutvalence.jumax.mastermind.model;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -43,22 +43,25 @@ public class HistoricOfScores {
 	/**
 	 * Display scores in the console.
 	 */
-	public void displayScores() throws IOException {
+	public String displayScores() throws IOException {
 		try (BufferedReader entry = new BufferedReader(new FileReader(this.scoresFile))) {
 				String readText = entry.readLine();
 				
 				if (readText != null) {
+					StringBuilder stringToDisplay = new StringBuilder();
+					String newLine = System.getProperty("line.separator");
 					String[] scoreString = readText.split("/");
 					for (int index = 0; index < scoreString.length; index++) {
 						String[] string = scoreString[index].split(",");
-						StringBuilder str = new StringBuilder();
-						str.append(string[0]);
-						str.append(" : ");
-						str.append(string[1]);
-						str.append(" rounds.");
-						System.out.println(str);						
+						stringToDisplay.append(string[0]);
+						stringToDisplay.append(" : ");
+						stringToDisplay.append(string[1]);
+						stringToDisplay.append(" rounds.");	
+						stringToDisplay.append(newLine);	
 					}
+					return stringToDisplay.toString();
 				}
 			}
+		return null;
 		}
 }

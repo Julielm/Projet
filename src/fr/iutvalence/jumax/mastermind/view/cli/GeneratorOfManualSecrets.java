@@ -1,6 +1,10 @@
-package fr.iutvalence.jumax.mastermind;
+package fr.iutvalence.jumax.mastermind.view.cli;
 
 import java.util.Scanner;
+
+import fr.iutvalence.jumax.mastermind.model.Color;
+import fr.iutvalence.jumax.mastermind.model.GeneratorOfSecrets;
+import fr.iutvalence.jumax.mastermind.model.WhiteColorException;
 
 /**
  * Generate a secret manually.
@@ -8,7 +12,7 @@ import java.util.Scanner;
  * @author jumax
  * @version 1.0.0
  */
-public class GeneratorOfManualSecrets extends GeneratorOfSecrets {
+public class GeneratorOfManualSecrets implements GeneratorOfSecrets {
 	@Override
 	public Color[] getSecret(int size) {
 		Scanner scanner = new Scanner(System.in);

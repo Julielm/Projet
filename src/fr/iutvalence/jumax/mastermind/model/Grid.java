@@ -1,4 +1,5 @@
-package fr.iutvalence.jumax.mastermind;
+package fr.iutvalence.jumax.mastermind.model;
+
 
 /**
  * Grid of MasterMind.

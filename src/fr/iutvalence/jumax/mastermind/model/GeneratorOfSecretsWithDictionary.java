@@ -1,4 +1,4 @@
-package fr.iutvalence.jumax.mastermind;
+package fr.iutvalence.jumax.mastermind.model;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,7 +13,7 @@ import java.util.Collections;
  * @author jumax
  * @version 1.0.0
  */
-public class GeneratorOfSecretsWithDictionary extends GeneratorOfSecrets {
+public class GeneratorOfSecretsWithDictionary implements GeneratorOfSecrets {
 	
 	/**
 	 * File where the dictionary is.

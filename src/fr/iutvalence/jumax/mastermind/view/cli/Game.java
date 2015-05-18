@@ -1,7 +1,18 @@
-package fr.iutvalence.jumax.mastermind;
+package fr.iutvalence.jumax.mastermind.view.cli;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import fr.iutvalence.jumax.mastermind.model.Color;
+import fr.iutvalence.jumax.mastermind.model.GeneratorOfRandomSecrets;
+import fr.iutvalence.jumax.mastermind.model.GeneratorOfSecretsWithDictionary;
+import fr.iutvalence.jumax.mastermind.model.Grid;
+import fr.iutvalence.jumax.mastermind.model.HistoricOfScores;
+import fr.iutvalence.jumax.mastermind.model.Oracle;
+import fr.iutvalence.jumax.mastermind.model.Player;
+import fr.iutvalence.jumax.mastermind.model.WhiteColorException;
 
 /**
  * Preparation of a new game.
@@ -12,7 +23,7 @@ import java.util.Scanner;
 public class Game {
 	public static final int LOST_GAME = 0;
 	/** Secret line of pawn's colors. */
-	private final Color[] secret;
+	private final Oracle secret;
 	/** Player of the game. */
 	private final Player player;
 	/** Grid of the game. */
@@ -28,14 +39,18 @@ public class Game {
 	 */
 	public Game(Player player, Color[] secret) {
 		this.player = player;
-		this.secret = secret.clone();
+		this.secret = new Oracle(secret.clone());
 		this.grid = new Grid();
 		this.roundNb = Grid.LINES_NB;
 		
 	}
-
-	/** Start a game. */
-	public int start() {
+	
+	
+	/** 
+	 * Start a game. 
+	 * @return the number of rounds to win 
+	 * */
+	public int game() {
 		int lineNumber = 0;
 		int goodColorGoodPlace = 0;
 		while (lineNumber != this.roundNb
@@ -45,9 +60,9 @@ public class Game {
 			this.grid.submitLine(guess, lineNumber);
 			System.out.println(Arrays.toString(guess));
 
-			Color[] cloneSecret = this.secret.clone();
-			goodColorGoodPlace = checkGoodColorGoodPlace(guess, cloneSecret);
-			int goodColor = checkGoodColor(guess, cloneSecret);
+			int[] answer = this.secret.check(guess);
+			goodColorGoodPlace = answer[0];
+			int goodColor = answer[1];
 
 			lineNumber++;
 			System.out.println("You have " + goodColorGoodPlace
@@ -58,60 +73,21 @@ public class Game {
 							+ " pawn(s) which have the good color but the wrong place.");
 		}
 		if (goodColorGoodPlace == Grid.COLUMNS_NB) {
-			System.out.println("Congratulations " + this.player.getName()
-					+ " you won in " + lineNumber + " round(s) !!");
+			System.out.print("Congratulations " + this.player.getName()
+					+ " you won in " + lineNumber);
+					if (lineNumber==1) {
+						System.out.print("round !!");
+					}
+					else {
+						System.out.print(" rounds !!");
+					}
 			return lineNumber;
 		}
 		System.out.println("Try again " + this.player.getName());
 		return LOST_GAME;
 	}
 
-	/**
-	 * Check which pawns have a good color and a good place.
-	 * 
-	 * @param guess
-	 * @param cloneSecret
-	 * @return the good color good place number
-	 */
-	private int checkGoodColorGoodPlace(Color[] guess, Color[] cloneSecret) {
-		int goodColorGoodPlace = 0;
-		int columnNumber = 0;
-		while (columnNumber != Grid.COLUMNS_NB) {
-			if (guess[columnNumber] == cloneSecret[columnNumber]) {
-				goodColorGoodPlace++;
-				cloneSecret[columnNumber] = Color.WHITE;
-				guess[columnNumber] = null;
-			}
-			columnNumber++;
-		}
-		return goodColorGoodPlace;
-	}
-
-	/**
-	 * Check which pawns have a good color but a wrong place.
-	 * 
-	 * @param guess
-	 * @param cloneSecret
-	 * @return the good color number
-	 */
-	private int checkGoodColor(Color[] guess, Color[] cloneSecret) {
-		int goodColor = 0;
-		int columnNumber = 0;
-		while (columnNumber != Grid.COLUMNS_NB) {
-			int columnSecretNumber = 0;
-			while (columnSecretNumber != Grid.COLUMNS_NB
-					&& guess[columnNumber] != cloneSecret[columnSecretNumber]) {
-				columnSecretNumber++;
-			}
-			if (columnSecretNumber != Grid.COLUMNS_NB) {
-				goodColor++;
-				cloneSecret[columnSecretNumber] = Color.WHITE;
-			}
-			columnNumber++;
-		}
-		return goodColor;
-	}
-
+	
 	/**
 	 * Ask a line to the player.
 	 * 

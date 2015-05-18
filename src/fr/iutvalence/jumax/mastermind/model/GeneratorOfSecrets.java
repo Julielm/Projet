@@ -1,4 +1,4 @@
-package fr.iutvalence.jumax.mastermind;
+package fr.iutvalence.jumax.mastermind.model;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import java.io.IOException;
  * @author jumax
  * @version 1.0.0
  */
-public abstract class GeneratorOfSecrets {
+public interface GeneratorOfSecrets {
 	/**
 	 * Get a secret.
 	 * 
@@ -17,5 +17,5 @@ public abstract class GeneratorOfSecrets {
 	 * @throws WhiteColorException
 	 * @throws IOException 
 	 */
-	public abstract Color[] getSecret(int size) throws WhiteColorException, IOException;
+	Color[] getSecret(int size) throws WhiteColorException, IOException;
 }
