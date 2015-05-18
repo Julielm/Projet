@@ -27,6 +27,8 @@ public class Grid {
 
 	/**
 	 * Get a line of the grid.
+	 * @param linenb 
+	 * @return colors of a line of the grid.
 	 */
 	public Color[] getLine(int linenb) {
 		return this.grid[linenb];

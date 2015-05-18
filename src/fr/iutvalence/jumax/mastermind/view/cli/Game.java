@@ -1,15 +1,10 @@
 package fr.iutvalence.jumax.mastermind.view.cli;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
 import fr.iutvalence.jumax.mastermind.model.Color;
-import fr.iutvalence.jumax.mastermind.model.GeneratorOfRandomSecrets;
-import fr.iutvalence.jumax.mastermind.model.GeneratorOfSecretsWithDictionary;
 import fr.iutvalence.jumax.mastermind.model.Grid;
-import fr.iutvalence.jumax.mastermind.model.HistoricOfScores;
 import fr.iutvalence.jumax.mastermind.model.Oracle;
 import fr.iutvalence.jumax.mastermind.model.Player;
 import fr.iutvalence.jumax.mastermind.model.WhiteColorException;
@@ -21,6 +16,7 @@ import fr.iutvalence.jumax.mastermind.model.WhiteColorException;
  * @version 1.0.0
  */
 public class Game {
+	/** Returned constant when the player loose. */
 	public static final int LOST_GAME = 0;
 	/** Secret line of pawn's colors. */
 	private final Oracle secret;
@@ -91,7 +87,7 @@ public class Game {
 	/**
 	 * Ask a line to the player.
 	 * 
-	 * @return
+	 * @return a line of colors
 	 */
 	private static Color[] askLine() {
 

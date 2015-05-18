@@ -65,7 +65,7 @@ public enum Color {
 	 * 
 	 * @return the colors
 	 */
-	public static StringBuilder displayColorsToInput() {
+	public static String displayColorsToInput() {
 		StringBuilder str = new StringBuilder();
 		for (Color color : values()) {
 			if (color != WHITE) {
@@ -73,6 +73,6 @@ public enum Color {
 				str.append(color.name());
 			}
 		}
-		return str;
+		return str.toString();
 	}
 }

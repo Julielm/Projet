@@ -10,12 +10,16 @@ public class Player {
 	/** Player's name. */
 	private final String name;
 
-	/** Player's constructor. */
+	/** Player's constructor. 
+	 * @param name 
+	 */
 	public Player(String name) {
 		this.name = name;
 	}
 
-	/** Name's getter. */
+	/** Name's getter. 
+	 * @return the name of the player
+	 */
 	public String getName() {
 		return this.name;
 	}

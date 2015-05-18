@@ -31,6 +31,7 @@ public class HistoricOfScores {
 	 * 
 	 * @param score
 	 * @param player
+	 * @throws IOException 
 	 */
 	public void writeScore(int score, String player) throws IOException {
 		try (FileWriter fw = new FileWriter(this.scoresFile, true)) {
@@ -40,8 +41,11 @@ public class HistoricOfScores {
 		}
 	}
 
+	
 	/**
 	 * Display scores in the console.
+	 * @return a string with scores
+	 * @throws IOException
 	 */
 	public String displayScores() throws IOException {
 		try (BufferedReader entry = new BufferedReader(new FileReader(this.scoresFile))) {
