@@ -13,6 +13,7 @@ import fr.iutvalence.jumax.mastermind.model.HistoricOfScores;
 import fr.iutvalence.jumax.mastermind.model.Player;
 import fr.iutvalence.jumax.mastermind.view.cli.Game;
 import fr.iutvalence.jumax.mastermind.view.cli.GeneratorOfManualSecrets;
+import fr.iutvalence.jumax.mastermind.view.gui.GameWindow;
 import fr.iutvalence.jumax.mastermind.view.gui.Navigation;
 
 /**
@@ -30,6 +31,8 @@ public class Starter {
 	 */
 	public static void main(String[] args) {
 		Navigation navigation = new Navigation();
+		//GameWindow game = new GameWindow();
+		
 	}
 	
 	/**

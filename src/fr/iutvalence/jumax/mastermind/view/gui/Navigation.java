@@ -44,8 +44,7 @@ public class Navigation extends JFrame
 		
 		menu.add(scores);
 	
-	    this.setVisible(true);
-	    
+	    this.setVisible(true); 
 	   
 	}
 }
