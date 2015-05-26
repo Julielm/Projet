@@ -31,7 +31,7 @@ public class Starter {
 	 */
 	public static void main(String[] args) {
 		Navigation navigation = new Navigation();
-		//GameWindow game = new GameWindow();
+		GameWindow game = new GameWindow();
 		
 	}
 	

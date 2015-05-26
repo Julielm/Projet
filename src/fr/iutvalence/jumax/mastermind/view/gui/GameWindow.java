@@ -2,7 +2,7 @@ package fr.iutvalence.jumax.mastermind.view.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
-
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 public class GameWindow extends JFrame
 {
 	public GameWindow() {
+		this.setTitle("Mastermind");
 		this.setSize(800, 700);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
@@ -22,18 +23,24 @@ public class GameWindow extends JFrame
 	    title.setFont(new Font("MV Boli", Font.PLAIN, 40));
 	    this.getContentPane().add(title, BorderLayout.NORTH);
 	    
-	    JPanel panel = new JPanel();
-	    this.getContentPane().add(panel, BorderLayout.CENTER);
-	    panel.setLayout(new BorderLayout(0, 0));
-	    
-	    JPanel lineCreation = new JPanel();
-	    panel.add(lineCreation, BorderLayout.EAST);
-	    
+	    JPanel grids = new JPanel();
+	    this.getContentPane().add(grids, BorderLayout.CENTER);
+	    grids.setLayout(new BorderLayout(0, 0));
+	    grids.add(new GameGrid(), BorderLayout.CENTER);
+	    grids.add(new GuessGrid(), BorderLayout.WEST);
+	   
+	    Box b1 = Box.createHorizontalBox();
 	    JButton validate = new JButton("Validate the line");
-	    lineCreation.add(validate);
-	    
+	    b1.add(validate);
+	   
+	    Box b2 = Box.createHorizontalBox();
 	    JButton initialize = new JButton("Initialize the line");
-	    lineCreation.add(initialize);
+	    b2.add(initialize);
+	    
+	    Box b3 = Box.createVerticalBox();
+	    b3.add(b1);
+	    b3.add(b2);
+	    this.getContentPane().add(b3, BorderLayout.EAST);
 	    
 	    this.setVisible(true);
 	}
