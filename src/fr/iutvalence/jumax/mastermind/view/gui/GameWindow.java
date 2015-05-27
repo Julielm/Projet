@@ -26,8 +26,9 @@ public class GameWindow extends JFrame
 	    JPanel grids = new JPanel();
 	    this.getContentPane().add(grids, BorderLayout.CENTER);
 	    grids.setLayout(new BorderLayout(0, 0));
-	    grids.add(new GameGrid(), BorderLayout.CENTER);
-	    grids.add(new GuessGrid(), BorderLayout.WEST);
+	    grids.add(new TriesPanel(), BorderLayout.CENTER);
+//	    grids.add(new GameGrid(), BorderLayout.CENTER);
+//	    grids.add(new ResultPanel(), BorderLayout.WEST);
 	   
 	    Box b1 = Box.createHorizontalBox();
 	    JButton validate = new JButton("Validate the line");

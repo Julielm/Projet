@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import fr.iutvalence.jumax.mastermind.controller.Controller;
 import fr.iutvalence.jumax.mastermind.model.Color;
 import fr.iutvalence.jumax.mastermind.model.GeneratorOfRandomSecrets;
 import fr.iutvalence.jumax.mastermind.model.GeneratorOfSecretsWithDictionary;
@@ -30,8 +31,7 @@ public class Starter {
 	 *            (n/a)
 	 */
 	public static void main(String[] args) {
-		Navigation navigation = new Navigation();
-		GameWindow game = new GameWindow();
+		Controller controller = new Controller();
 		
 	}
 	

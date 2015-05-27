@@ -2,6 +2,7 @@ package fr.iutvalence.jumax.mastermind.view.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -9,10 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import fr.iutvalence.jumax.mastermind.controller.Controller;
+
 public class Navigation extends JFrame
 {
 
-	public Navigation() {
+	public Navigation(Controller controller) {
 		this.setTitle("Mastermind");
 	    this.setSize(500, 500);
 	    this.setResizable(false);
@@ -29,9 +32,10 @@ public class Navigation extends JFrame
 		this.getContentPane().add(menu, BorderLayout.CENTER);
 		menu.setLayout(null);
 		
-		JButton play = new JButton("PLAY");
+		JButton play = new JButton(new ActionLaunch(this,controller));
 		play.setBounds(66, 38, 364, 155);
 		play.setFont(new Font("Shruti", Font.PLAIN, 24));
+		play.setText("PLAY");
 		
 		menu.add(play);
 		
