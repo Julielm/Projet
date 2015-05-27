@@ -11,6 +11,8 @@ import javax.swing.SwingConstants;
 
 public class GameWindow extends JFrame
 {
+	private TriesPanel triesPanel;
+	
 	public GameWindow() {
 		this.setTitle("Mastermind");
 		this.setSize(800, 700);
@@ -44,5 +46,9 @@ public class GameWindow extends JFrame
 	    this.getContentPane().add(b3, BorderLayout.EAST);
 	    
 	    this.setVisible(true);
+	}
+	
+	public TriesPanel getTriesPanel() {
+		return this.triesPanel;
 	}
 }

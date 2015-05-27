@@ -10,13 +10,23 @@ import javax.swing.plaf.SplitPaneUI;
 
 public class TryPanel extends JPanel
 {
+	private ResultPanel resultPanel;
+	private GamePanel gamePanel;
 	public TryPanel() {
-		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new ResultPanel(), new Label());
+		this.resultPanel=new ResultPanel();
+		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, this.resultPanel, new Label());
 		split.setDividerLocation(80);
-
-		JSplitPane split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, split, new GamePanel());
+		this.gamePanel=new GamePanel();
+		JSplitPane split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, split, this.gamePanel);
 		split2.setDividerLocation(70);
 		this.add(split2);
-		
+	}
+	
+	public ResultPanel getResultPanel() {
+		return this.resultPanel;
+	}
+	
+	public GamePanel getGamePanel() {
+		return this.gamePanel;
 	}
 }

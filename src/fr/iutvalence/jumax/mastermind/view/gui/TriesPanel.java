@@ -17,4 +17,8 @@ public class TriesPanel extends JPanel
 			this.add(panel);
 		}
 	}
+	
+	public TryPanel[] getTriesPanel() {
+		return this.triesPanel;
+	}
 }
